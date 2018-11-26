@@ -1,0 +1,104 @@
+App\Entity\DataOlaf:
+    type: entity
+    repositoryClass: App\Repository\DataOlafRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        transporteur:
+            type: string
+            length: 255
+        
+        code_tarif:
+            type: string
+            length: 255
+
+        num_profil:
+            type: string
+            length: 255	
+
+        zonage_titre:
+            type: string
+            length: 255
+            nullable: false
+
+        zone_valid:
+            type: string
+            length: 255
+            nullable: true
+
+        horodatage:
+            type: datetime
+
+        ligne_controle:
+            type: string
+            length: 255
+            nullable: true
+
+        nature_transact:
+            type: string
+            length: 255
+            nullable: false
+
+        statut_valid:
+            type: string
+            length: 255
+            nullable: false
+
+        reseau:
+            type: string
+            length: 255
+            nullable: false
+
+        code_station_event:
+            type: string
+            length: 255
+            nullable: true
+
+        recette:
+            type: string
+            length: 255
+            nullable: true
+
+        num_borne:
+            type: string
+            length: 255
+            nullable: true
+
+        ref_ligne:
+            type: string
+            length: 255
+            nullable: true
+
+        equipement:
+            type: string
+            length: 255
+            nullable: true
+
+        coquille:
+            type: string
+            length: 255
+            nullable: true
+
+        date_integ_olaf:
+            type: datetime
+            nullable: false
+
+        date_integ:
+            type: datetime
+            options:
+                default: CURRENT_TIMESTAMP
+            nullable: false
+
+        env:
+            type: string
+            length: 255
+            nullable: false
+    
+    uniqueConstraints:
+        search_idx:
+            columns: [ horodatage, num_borne, env ]

@@ -1,0 +1,73 @@
+App\Entity\DataCtu:
+    type: entity
+    repositoryClass: App\Repository\DataCtuRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        type_valid:
+            type: integer
+            length: 255
+            nullable: false
+        
+        num_pass:
+            type: string
+            length: 255
+            nullable: false	
+
+        num_contrat:
+            type: string
+            length: 255
+            nullable: false
+
+        code_tarif:
+            type: string
+            length: 255
+            nullable: false	
+
+        horodatage:
+            type: datetime
+
+        nature_transact:
+            type: string
+            length: 255
+            nullable: false
+
+        sequence_ctu:
+            type: string
+            length: 255
+            nullable: false
+
+        ref_transporteur:
+            type: string
+            length: 255
+            nullable: false
+
+        ref_reseau:
+            type: string
+            length: 255
+            nullable: false
+
+        ref_ligne:
+            type: string
+            length: 255
+            nullable: false
+
+        date_integ:
+            type: datetime
+            options:
+                default: CURRENT_TIMESTAMP
+            nullable: false
+
+        env:
+            type: string
+            length: 255
+            nullable: false
+    
+    uniqueConstraints:
+        search_idx:
+            columns: [ horodatage, num_pass, nature_transact, sequence_ctu ]

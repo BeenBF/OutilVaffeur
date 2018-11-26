@@ -1,0 +1,70 @@
+parameters:
+    # Adds a fallback DATABASE_URL if the env var is not set.
+    # This allows you to run cache:warmup even if your
+    # environment variables are not available yet.
+    # You should not need to change this value.
+    env(DATABASE_URL): 'mysql://root:root@127.0.0.1:3306/recette'
+
+    d-bst:
+        url: 'wwwwwww/bst'
+        user: ''
+        mdp: ''
+        champs: "TO_CHAR(DATE_VAL,'YYYY-MM-DD HH24:MI:SS') AS DATE_VAL,PROFIL_VAL,ZONE_VAL, SENS_CIRCULATION_VAL, LIGNE_REAFFECTEE_VAL, CODE_REFUS_VAL, to_char(CONTRAT_VAL, 'FMXXXX') AS CONTRAT_VAL, SERIE_VAL, EXPLOITANT_ACCEPT_VAL"
+        table: 'VSCE_VALID'
+        champRech: 'SERIE_VAL'
+        champHeure: 'DATE_VAL'
+
+    q-sic:
+       url: 'wwwwwww/bst'
+        user: ''
+        mdp: ''
+        champs: "TO_CHAR(DATE_EVT,'YYYY-MM-DD HH24:MI:SS') AS DATE_EVT,NUM_BORNE,NUM_SERIE,to_char(CODE_TARIF, 'FMXXXX') AS CODE_TARIF,NUM_PROFIL,ZONE_EVT,CODE_REFUS,PRESTATAIRE,NUM_LIGNE"
+        table: 'TRASTA'
+        champRech: 'NUM_SERIE'
+        champHeure: 'DATE_EVT'
+    d-sic:
+        url: 'wwwwwww/bst'
+        user: ''
+        mdp: ''
+        champs: "TO_CHAR(DATE_EVT,'YYYY-MM-DD HH24:MI:SS') AS DATE_EVT,NUM_BORNE,NUM_SERIE,to_char(CODE_TARIF, 'FMXXXX') AS CODE_TARIF,NUM_PROFIL,ZONE_EVT,CODE_REFUS,PRESTATAIRE,NUM_LIGNE"
+        table: 'TRASTA'
+        champRech: 'NUM_SERIE'
+        champHeure: 'DATE_EVT'
+    q-bst:
+       url: 'wwwwwww/bst'
+        user: ''
+        mdp: ''
+        champs: "TO_CHAR(DATE_VAL,'YYYY-MM-DD HH24:MI:SS') AS DATE_VAL,PROFIL_VAL,ZONE_VAL, SENS_CIRCULATION_VAL, LIGNE_REAFFECTEE_VAL, CODE_REFUS_VAL, to_char(CONTRAT_VAL, 'FMXXXX') AS CONTRAT_VAL, SERIE_VAL, EXPLOITANT_ACCEPT_VAL"
+        table: 'VSCE_VALID'
+        champRech: 'SERIE_VAL'
+        champHeure: 'DATE_VAL'
+
+doctrine:
+    dbal:
+        # configure these for your database server
+        default_connection: default
+        connections:
+            default:
+                url: '%env(resolve:DATABASE_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+            d-bst:
+                host: 'bd-q-sicsta.info.ratp'
+                driver: 'pdo_oci'
+                port: '1521'
+                dbname: 'cta'
+                user: 'usr_adm'
+                password: 'adm_inv'
+                charset: utf8mb4
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/config/doctrine/mapping'
+                prefix: 'App\Entity'
+                alias: App

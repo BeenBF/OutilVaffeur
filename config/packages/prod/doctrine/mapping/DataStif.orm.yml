@@ -1,0 +1,114 @@
+App\Entity\DataStif:
+    type: entity
+    repositoryClass: App\Repository\DataStifRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        prestataire:
+            type: string
+            length: 255
+        
+        code_tarif:
+            type: string
+            length: 255
+
+        num_profil:
+            type: string
+            length: 255
+
+        num_anonyme:
+            type: string
+            length: 255
+            nullable: false	
+
+        date_debut_val:
+            type: datetime
+
+        date_fin_val:
+            type: datetime
+
+        zones:
+            type: string
+            length: 255
+            nullable: true
+
+        horodatage:
+            type: datetime
+
+        nature_transact:
+            type: string
+            length: 255
+            nullable: false
+
+        code_station_event:
+            type: string
+            length: 255
+            nullable: true
+
+        num_borne:
+            type: string
+            length: 255
+            nullable: true
+
+        transporteur:
+            type: string
+            length: 255
+            nullable: false
+
+        ref_ligne:
+            type: string
+            length: 255
+            nullable: true
+
+        sens:
+            type: string
+            length: 255
+            nullable: true
+
+        mode_valid:
+            type: string
+            length: 255
+            nullable: true
+
+        sequence_ctu:
+            type: string
+            length: 255
+            nullable: true
+
+        ident_equip:
+            type: string
+            length: 255
+            nullable: true
+
+        ident_vehicule:
+            type: string
+            length: 255
+            nullable: true
+
+        ref_mission:
+            type: string
+            length: 255
+            nullable: true
+
+        date_integ:
+            type: datetime
+            options:
+                default: CURRENT_TIMESTAMP
+            nullable: false
+
+        env:
+            type: string
+            length: 255
+            nullable: false
+    
+    uniqueConstraints:
+        search_idx:
+            columns: [ horodatage, num_anonyme, env ]
+
+    lifecycleCallbacks:
+        prePersist: [ setIntegAtValue ] # appel lors de la creation de l'entite

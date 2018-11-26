@@ -1,0 +1,54 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+recette:
+    path: /
+    controller: App\Controller\HomeController::home
+
+recette_error:
+    path: /Home/{erreur}
+    controller: App\Controller\HomeController::homeError
+
+historique:
+    path: /Historiques/{nomCourt}/{environnement}
+    controller: App\Controller\Historique::showAll
+
+home_historique:
+    path: /Donnees/Historiques
+    controller: App\Controller\Historique::showEnvHisto
+
+env_show:
+    path: /Env/{nomCourt}
+    controller: App\Controller\EnvController::show
+
+pass_show:
+    path: /Pass
+    controller: App\Controller\PassController::showPass
+
+pass_show_sic:
+    path: /Pass/SIC
+    controller: App\Controller\PassController::showPassSic
+
+env_show_stif:
+    path: /Env/{nomCourt}/STIF
+    defaults: { _controller: 'App\Controller\EnvController::showStif' }	
+
+env_show_olaf:
+    path: /Env/{nomCourt}/OLAF
+    defaults: { _controller: 'App\Controller\EnvController::showOlaf' }	
+
+env_show_opm:
+    path: /Env/{nomCourt}/OPTIMUS
+    defaults: { _controller: 'App\Controller\EnvController::showOptimus' }
+
+env_show_ctu:
+    path: /Env/{nomCourt}/CTU
+    defaults: { _controller: 'App\Controller\EnvController::showCtu' }
+
+_errors:
+    resource: '@TwigBundle/Resources/config/routing/errors.xml'
+    prefix:   /_error
+
+erreur:
+    path: /Erreur
+    defaults: { _controller: 'App\Controller\ExceptionController::showException' }

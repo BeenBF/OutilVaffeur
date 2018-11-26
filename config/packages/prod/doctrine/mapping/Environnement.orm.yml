@@ -1,0 +1,29 @@
+App\Entity\Environnement:
+    type: entity
+    repositoryClass: App\Repository\EnvRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        nomCourt:
+            type: string
+            length: 255
+            nullable: false
+
+        nomDNS:
+            type: string
+            length: 255
+            nullable: false
+        
+        typeEnv:
+            type: string
+            length: 255
+            nullable: false
+        nomLong:
+            type: string
+            length: 255
+            nullable: true
