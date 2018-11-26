@@ -49,14 +49,6 @@ doctrine:
                 driver: 'pdo_mysql'
                 server_version: '5.7'
                 charset: utf8mb4
-            d-bst:
-                host: 'bd-q-sicsta.info.ratp'
-                driver: 'pdo_oci'
-                port: '1521'
-                dbname: 'cta'
-                user: 'usr_adm'
-                password: 'adm_inv'
-                charset: utf8mb4
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
