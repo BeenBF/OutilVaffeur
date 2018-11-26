@@ -1,0 +1,101 @@
+{# templates/showByPass.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/tablesorter.css') }}"></style>
+{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<h2>Environnement {{ nomLong }} | {{ typeEnv }}</h2>
+	</div>
+	<form method="post" action="{{ path('pass_show') }}" >
+		<div class="form-check">
+			<label class="form-check-label">
+				<h2 class="my-1">n° PASS : <input type="text" name="numPass" id="numPass" value="{{ numPass }}"></h2>
+			</label>
+			<label class="form-check-label">
+				<input class="form-check-input" type="hidden" name="envTest" id="envTest" value="{{ nomCourt }}">
+			</label>
+			<label class="form-check-label">
+				<button class="btn button" type="submit" >Nouvelle recherche</button>
+			</label>
+		</div>			
+	</form>
+</div>
+{% if typeEnv == "FERRE" %}
+<div class="container-fluid">
+	<div class="row">
+		<h2>Donn&eacute;es Du PASS</h2>
+	</div>
+	<table id="myTable" class="table table-striped table-bordered" width="100%">
+		<thead>
+			<tr>
+				<th>Env</th>
+				<th>Produit</th>
+				<th>Profil</th>
+				<th>n&deg;Pass</th>
+				<th>Zones</th>
+				<th>Horodatage</th>
+				<th>Nature Valid</th>
+				<th>Transporteur</th>
+				<th>Ligne</th>
+				<th>n&deg;Borne</th>
+				<th>n&deg;Sequence</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% include('pass/ferre/ctuFerre.html.twig') %}
+		{% include('pass/ferre/olafFerre.html.twig') %}
+		{% include('pass/ferre/stifFerre.html.twig') %}
+		</tbody>
+	</table>
+</div>
+{% endif %}
+	{% if typeEnv == "BUS" %}
+		 <div class="container-fluid">
+		<div class="row">
+			<h2>Donn&eacute;es du Pass</h2>
+		</div>
+		<table id="myTable1" class="table table-striped table-bordered" width="100%">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Profil</th>
+					<th>n&deg;Pass</th>
+					<th>D&eacute;but val</th>
+					<th>Fin Val</th>
+					<th>Zones</th>
+					<th>Horodatage</th>
+					<th>Nature Valid</th>
+					<th>Station</th>
+					<th>Transporteur</th>
+					<th>Ligne</th>
+					<th>Sens</th>
+					<th>n&deg;Equip</th>
+					<th>Coquille</th>
+					<th>Ref Mission</th>
+					<th>n&deg;Sequence</th>
+				</tr>
+			</thead>
+			<tbody>
+		{% include('pass/bus/ctu.html.twig') %}
+		{% include('pass/bus/olafBus.html.twig') %}
+		{% include('pass/bus/stiffBus.html.twig') %}
+	{% endif %}
+		</tbody>
+	</table>
+</div>
+<br><br><br>
+{% endblock %}
+{% block javascripts %}
+
+<script type="text/javascript" src="{{ asset('/JS/tableSorterFull.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/JS/bootstrapTableSorter.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() 
+		{ 
+			$("#myTable").DataTable(); 
+		} 
+	);
+</script>
+{% endblock %}

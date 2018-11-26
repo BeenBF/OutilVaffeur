@@ -1,0 +1,45 @@
+<div class="container-fluid">
+		<table id="myTable" class="table table-striped table-bordered" width="100%">
+			<thead>
+				<tr>
+					<th>Prestataire</th>
+					<th>Produit</th>
+					<th>Profil</th>
+					<th>Zonage Titre</th>
+					<th>Station</th>
+					<th>Zone valid</th>
+					<th>LC</th>
+					<th>Nature Valid</th>
+					<th>Statut Valid</th>
+					<th>R&eacute;seau</th>
+					<th>Ligne</th>
+					<th>Recette</th>
+					<th>Borne</th>
+					<th>Horodatage</th>
+					<th>Date d'int&eacute;g</th>
+				</tr>
+			</thead>
+			<tbody>
+		{% for data2 in dataOpm %}
+			<tr>
+				<td>{{ data2.transporteur }}</td>
+				<td>{{ data2.code_tarif }}</td>
+				<td>{{ data2.num_profil }}</td>
+				<td>{{ data2.zonage_titre }}</td>
+				<td>{{ data2.code_station_event }}</td>
+				<td>{{ data2.zone_valid }}</td>
+				<td>{{ data2.ligne_controle }}</td>
+				<td>{{ data2.nature_transact }}	</td>
+				<td>{{ data2.statut_valid }}</td>
+				<td>{{ data2.reseau }}</td>
+				<td>{{ data2.ref_ligne }}</td>
+				<td>{{ data2.recette }}</td>
+				<td>{{ data2.num_borne }}</td>
+				<td>{{ data2.horodatage|date('Y-m-d H:i:s') }}</td>
+				<td>{{ data2.date_integ_olaf|date('Y-m-d') }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	<a type="button" class="btn button" href="{{ path('env_show', { 'nomCourt': nomCourt }) }}">Retour</a>
+	</div>

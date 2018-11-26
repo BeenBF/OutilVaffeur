@@ -1,0 +1,17 @@
+	{% for data3 in dataStif %}
+
+		<tr>
+			<td>STIF</td>
+			<td>{{ data3.code_tarif }}</td>
+			<td>{{ data3.num_profil|number_format }}</td>
+			<td>{{ numPass }}</td>
+			<td>{{ data3.zones|number_format }}</td>
+			<td>{{ data3.horodatage|date('Y-m-d H:i:s') }}</td>
+			<td>{{ data3.nature_transact }}</td>
+			<td>{{ data3.transporteur|number_format }}</td>
+			<td>{{ data3.ref_ligne|number_format }}</td>
+			<td>{{ data3.num_borne }}</td>
+			<td>{{ data3.sequence_ctu|number_format }}</td>
+		</tr>
+    {% endfor %}
+		

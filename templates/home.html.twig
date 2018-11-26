@@ -1,0 +1,80 @@
+{# templates/home.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/bootstrap.css') }}"></style>
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/formulaire.css') }}"></style>
+{% endblock %}
+{% block body %}
+	<div class="container" >
+		<div class="row">
+			<div class="col-md-6">
+				<p class="menu_actif float-left" id="pass" onClick="showPass();"> Recherche par n°Pass</p>
+			</div>
+			<div class="col-md-6">
+				<p class="menu float-right" id="env" onClick="showEnv();"> Liste des environnements disponibles</p>
+			</div>
+		</div>
+		<br />
+	</div>
+	<div class="container" id="envDiv" style="display:none">
+		<div class="container-contact1" >
+		{% for env in environnements %}
+				<div class="col-md-2">
+					<h2 class="my-1">{{ env.typeEnv }}</h2>
+				</div>
+				<div class="col-md-4">
+					<h2 class="my-1">{{ env.nomLong }} </h2>
+				</div>
+				<div class="col-md-3" >
+					<h4>{{ env.NomDNS }}</h4>
+				</div>
+				<div class="col-md-2">
+					<a type="button" class="btn button" href="{{ path('env_show', { 'nomCourt': env.nomCourt } , false ) }}">Y Aller !</a>
+				</div>
+		{% endfor %}
+		</div>
+	</div>
+
+	<div class="container" id="passDiv" >
+		<div class="container-contact1" >
+			<form class="contact1-form validate-form" method="post" action="{{ path('pass_show_sic') }}" >
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<input class="input1" type="text" name="numPass" id="numPass" placeholder="N° Pass">
+					<span class="shadow-input1"></span>
+				</div>
+				{% for env in environnements %}
+					<div class="row wrap-input1 validate-input">
+						<div class="col-md-8"><span class="shadow-input1">{{ env.typeEnv }} - {{ env.nomLong }}</span>&emsp;&emsp;&emsp;&emsp;</div>
+						<div class="col-md-4"><input  type="radio" name="envTest" id="envtest" value="{{ env.nomCourt }}"></div>
+					</div>
+				{% endfor %}
+				<div class="container-contact1-form-btn">
+					<button class="contact1-form-btn" type="submit" >Rechercher</button>
+				</div>			
+			</form>
+		</div>
+	</div>
+	{% if erreur is defined %}
+		<div class="container">
+			<p class="erreur">* {{ erreur }}</p>
+		</div>
+	{% endif %}
+	{% block javascripts %}
+	<script type="text/javascript">
+		function showEnv()
+		{
+			document.getElementById('envDiv').style.display ="block";
+			document.getElementById('passDiv').style.display ="none";
+			document.getElementById("env").className = "menu_actif float-right";
+			document.getElementById("pass").className = "menu_passif float-left";
+		}
+		function showPass()
+		{
+			document.getElementById('envDiv').style.display ="none";
+			document.getElementById('passDiv').style.display ="block";
+			document.getElementById("pass").className = "menu_actif float-left";
+			document.getElementById("env").className = "menu_passif float-right";
+		}
+	</script>
+	{% endblock %}
+{% endblock %}

@@ -1,0 +1,35 @@
+ <div class="container-fluid">
+		<table id="myTable" class="table table-striped table-bordered" style="width:100%" >
+			<thead>
+				<tr>
+					<th>Type Valid</th>
+					<th>Produit</th>
+					<th>n°Pass</th>
+					<th>n°Contrat</th>
+					<th>Horodatage</th>
+					<th>Nature Transaction</th>
+					<th>N° Sequence</th>
+					<th>Transporteur</th>
+					<th>Reseau</th>
+					<th>Ligne</th>
+				</tr>
+			</thead>
+			<tbody>
+		{% for data3 in dataCtu %}
+			<tr>
+				<td>{{ data3.type_valid }}</td>
+				<td>{{ data3.code_tarif }}</td>
+				<td>{{ data3.num_pass }}</td>
+				<td>{{ data3.num_contrat }}</td>
+				<td>{{ data3.horodatage|date('Y-m-d H:i:s') }}</td>
+				<td>{{ data3.nature_transact }}</td>
+				<td>{{ data3.sequence_ctu }}</td>
+				<td>{{ data3.ref_transporteur }}</td>
+				<td>{{ data3.ref_reseau }}</td>
+				<td>{{ data3.ref_ligne }}</td>
+			</tr>
+		{% endfor %}
+			</tbody>
+		</table>
+	<a type="button" class="btn button" href="{{ path('env_show', { 'nomCourt': nomCourt }) }}">Retour</a>
+</div>

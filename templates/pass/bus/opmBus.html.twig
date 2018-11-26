@@ -1,0 +1,17 @@
+
+		{% for data2 in dataOpm %}
+			<tr>
+				<td style="color:blue">OPTIMUS</td>
+				<td>{{ data2.code_tarif }}</td>
+				<td>{{ data2.num_profil }}</td>
+				<td>{{ numPass }}</td>
+				<td>{{ data2.zone_valid }}</td>
+				<td>{{ data2.horodatage|date('Y-m-d H:i:s') }}</td>
+				<td>{{ data2.nature_transact }}	</td>
+				<td>{{ data2.transporteur }}</td>
+				<td>{{ data2.ref_ligne }}</td>
+				<td></td>
+				<td>{{ data2.equipement }}</td>				
+				<td>{{ data2.coquille }}</td>
+			</tr>
+		{% endfor %}

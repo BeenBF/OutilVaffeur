@@ -1,0 +1,56 @@
+<div class="container-fluid">
+	<table id="myTable" class="table table-striped table-bordered" width="100%">
+		<thead>
+			<tr>
+				<th>Env</th>
+				<th>Produit</th>
+				<th>Profil</th>
+				<th>n&deg;Pass</th>
+				<th>Zones</th>
+				<th>Horodatage</th>
+				<th>Nature Valid</th>
+				<th>Transporteur</th>
+				<th>Ligne</th>
+				<th>n&deg;Borne</th>
+				<th>n&deg;Sequence</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if ( dataSic is defined ) and not ( dataSic == false ) %}
+			{% include('pass/ferre/sicFerre.html.twig') %}
+		{% else %}
+			<script type="text/javascript">
+				document.getElementById('dataSic').style.display ="block";
+			</script>
+		{% endif %}
+		{% if ( dataCtu is defined ) and not ( dataCtu == false ) %}
+			{% include('pass/ferre/ctuFerre.html.twig') %}
+		{% else %}
+			<script type="text/javascript">
+				document.getElementById('dataCtu').style.display ="block";
+			</script>
+		{% endif %}
+		{% if ( dataOlaf is defined ) and not ( dataOlaf == false ) %}
+			{% include('pass/ferre/olafFerre.html.twig') %}
+		{% else %}
+			<script type="text/javascript">
+				document.getElementById('dataOlaf').style.display ="block";
+			</script>
+		{% endif %}
+		{% if ( dataOpm is defined ) and not ( dataOpm == false ) %}
+			{% include('pass/ferre/opmFerre.html.twig') %}
+		{% else %}
+			<script type="text/javascript">
+				document.getElementById('dataOpm').style.display ="block";
+			</script>
+		{% endif %}
+		{% if ( dataStif is defined ) and not ( dataStif == false ) %}
+			{% include('pass/ferre/stifFerre.html.twig') %}
+		{% else %}
+			<script type="text/javascript">
+				document.getElementById('dataStif').style.display ="block";
+			</script>
+		{% endif %}
+		</tbody>
+	</table>
+</div>

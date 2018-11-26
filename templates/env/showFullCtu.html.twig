@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ nomCourt }}  {% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/bootstrap.css') }}"></style>
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<h3> ~~~~ Données Post Paiement {{ typeEnv }} ~~~~ </h3>
+	</div>
+	{% include('env/ctu.html.twig') %}	
+{% endblock %}
+{% block javascripts %}
+
+<script type="text/javascript" src="{{ asset('/JS/tableSorterFull.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/JS/bootstrapTableSorter.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() 
+		{ 
+			$("#myTable").DataTable(); 
+		} 
+	);
+</script>
+{% endblock %}

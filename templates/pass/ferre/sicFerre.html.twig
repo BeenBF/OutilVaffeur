@@ -1,0 +1,16 @@
+
+	{% for data in dataSic %}
+		<tr>
+			<td>SIC FERRE</td>
+			<td>{{ data.CODE_TARIF }}</td>
+			<td>{{ data.NUM_PROFIL }}</td>
+			<td>{{ numPass }}</td>
+			<td>{{ data.ZONE_EVT }}</td>
+			<td>{{ data.DATE_EVT|date('Y-m-d H:i:s') }}</td>
+			<td>{{ data.CODE_REFUS }}</td>
+			<td>{{ data.PRESTATAIRE }}</td>
+			<td>{{ data.NUM_LIGNE }}</td>
+			<td>{{ data.NUM_BORNE }}</td>
+			<td></td>
+		</tr>
+    {% endfor %}

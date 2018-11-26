@@ -1,0 +1,45 @@
+<div class="container-fluid">
+	<table id="myTable" class="table table-striped table-bordered" width="100%">
+		<thead>
+			<tr>
+				<th>Produit</th>
+				<th>Profil</th>
+				<th>D&eacute;but val</th>
+				<th>Fin Val</th>
+				<th>Zones</th>
+				<th>Horodatage</th>
+				<th>Nature Val</th>
+				<th>Station</th>
+				<th>Transporteur</th>
+				<th>Ligne</th>
+				<th>Sens</th>
+				<th>n&deg;Equip</th>
+				<th>Coquille</th>
+				<th>Mission</th>
+				<th>n&deg;S&eacute;quence</th>
+			</tr>
+		</thead>
+		<tbody>
+	{% for data in dataStif %}
+		<tr>
+			<td>{{ data.code_tarif }}</td>
+			<td>{{ data.num_profil }}</td>
+			<td>{{ data.date_debut_val|date('Y-m-d') }}</td>
+			<td>{{ data.date_fin_val|date('Y-m-d') }}</td>
+			<td>{{ data.zones }}</td>
+			<td>{{ data.horodatage|date('Y-m-d H:i:s') }}</td>
+			<td>{{ data.nature_transact }}</td>
+			<td>{{ data.code_station_event }}</td>
+			<td>{{ data.transporteur|number_format }}</td>
+			<td>{{ data.ref_ligne|number_format }}</td>
+			<td>{{ data.sens }}</td>
+			<td>{{ data.ident_equip }}</td>
+			<td>{{ data.ident_vehicule }}</td>
+			<td>{{ data.ref_mission }}</td>
+			<td>{{ data.sequence_ctu|number_format }}</td>
+		</tr>
+    {% endfor %}
+		</tbody>
+	</table>
+	<a type="button" class="btn button" href="{{ path('recette') }}">Home.</a>
+</div>

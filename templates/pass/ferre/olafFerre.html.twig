@@ -1,0 +1,16 @@
+
+	{% for data2 in dataOlaf %}
+		<tr>
+			<td>OLAF</td>
+			<td>{{ data2.code_tarif }}</td>
+			<td>{{ data2.num_profil|number_format }}</td>
+			<td>{{ numPass }}</td>
+			<td>{{ data2.zone_valid|number_format }}</td>
+			<td>{{ data2.horodatage|date('Y-m-d H:i:s') }}</td>
+			<td>{{ data2.statut_valid }}</td>
+			<td>{{ data2.transporteur|number_format }}</td>
+			<td>{{ data2.ref_ligne|number_format }}</td>
+			<td>{{ data2.num_borne }}</td>
+			<td></td>
+		</tr>
+	{% endfor %}

@@ -1,0 +1,63 @@
+{# templates/showByPass.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/bootstrap.css') }}"></style>
+{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-6"> <h3>Environnement {{ nomLong }} | {{ typeEnv }}</h3></div>
+		<div class="col-md-6">
+		<form method="post" action="{{ path('pass_show_sic') }}" >
+			<div class="form-check">
+				<label class="form-check-label">
+					<h3 class="my-1">n° PASS : <input type="text" name="numPass" id="numPass" value="{{ numPass }}"></h3>
+				</label>
+				<label class="form-check-label">
+					<input class="form-check-input" type="hidden" name="envTest" id="envTest" value="{{ nomCourt }}">
+				</label>
+				<label class="form-check-label">
+					<button class="btn button" type="submit" >Nouvelle recherche</button>
+				</label>
+			</div>			
+		</form>
+	</div>
+	</div>
+</div>
+<div class="container" >
+	<div class="row" id="dataSic" style="display:none">
+		<p class="erreur"> Pas de données SIC BUS TRAFIC !!! </p>
+	</div>
+	<div class="row" id="dataStif" style="display:none">
+		<p class="erreur"> Pas de données STIF !!! </p>
+	</div>
+	<div class="row" id="dataOlaf" style="display:none">
+		<p class="erreur"> Pas de données OLAF !!! </p>
+	</div>
+	<div class="row" id="dataOpm" style="display:none">
+		<p class="erreur"> Pas de données OPM !!! </p>
+	</div>
+	<div class="row" id="dataCtu" style="display:none">
+		<p class="erreur"> Pas de données CTU !!! </p>
+	</div>
+</div>
+{% if typeEnv == "FERRE" %}
+	{% include('pass/ferre/enteteTabFerre.html.twig') %}
+{% endif %}
+{% if typeEnv == "BUS" %}
+	{% include('pass/bus/enteteTabBus.html.twig') %}
+{% endif %}
+<br><br><br>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('/JS/tableSorterFull.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/JS/bootstrapTableSorter.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() 
+		{ 
+			$("#myTable").DataTable(); 
+		} 
+	);
+</script>
+{% endblock %}

@@ -1,0 +1,89 @@
+{# templates/home.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/bootstrap.css') }}"></style>
+	<link rel="stylesheet" type="text/css" href="{{ asset('/CSS/formulaire.css') }}"></style>
+{% endblock %}
+{% block body %}
+	<nav class="navbar navbar-default">
+		<div class="container" >
+			<ul class="nav navbar-nav">
+			{% for env in environnements %}
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ env.typeEnv }} | {{ env.nomLong }}<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{{ path('historique', { 'nomCourt': env.nomCourt , 'environnement': 'STIF' }) }}">STIF</a></li>
+						<li><a href="{{ path('historique', { 'nomCourt': env.nomCourt , 'environnement': 'OLAF' }) }}">OLAF</a></li>
+						<li><a href="{{ path('historique', { 'nomCourt': env.nomCourt , 'environnement': 'CTU' }) }}">Post Paiement</a></li>
+						<li><a href="{{ path('historique', { 'nomCourt': env.nomCourt , 'environnement': 'OPM' }) }}">OPTIMUS</a></li>
+					</ul>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</nav>
+	{% if nomCourt is defined %}
+		{% if ( dataStif is defined ) %}
+			<div class="container pull-right">
+				<div class="row">
+					<h3> ~~~~ Données STIF {{ nomLong }} {{ typeEnv }} ~~~~ </h3>
+				</div>
+			</div>
+			<br /><br /><br />
+			{% if typeEnv == "BUS" %}
+				{% include('historique/bus/stifBus.html.twig') %}
+			{% endif %}
+			{% if typeEnv == "FERRE" %}
+				{% include('historique/ferre/stifFerre.html.twig') %}
+			{% endif %}	
+		{% endif %}
+		{% if ( dataOlaf is defined ) %}
+			<div class="container pull-right">
+				<div class="row">
+					<h3> ~~~~ Données OLAF {{ nomLong }} {{ typeEnv }} ~~~~ </h3>
+				</div>
+			</div>
+			<br /><br /><br />
+			{% if typeEnv == "BUS" %}
+				{% include('historique/bus/olafBus.html.twig') %}
+			{% endif %}
+			{% if typeEnv == "FERRE" %}
+				{% include('historique/ferre/olafFerre.html.twig') %}
+			{% endif %}
+		{% endif %}
+		{% if ( dataOpm is defined ) %}
+			<div class="container pull-right">
+				<div class="row">
+					<h3> ~~~~ Données OPTIMUS {{ nomLong }} {{ typeEnv }} ~~~~ </h3>
+				</div>
+			</div>
+			<br /><br /><br />
+			{% if typeEnv == "BUS" %}
+				{% include('historique/bus/opmBus.html.twig') %}
+			{% endif %}
+			{% if typeEnv == "FERRE" %}
+				{% include('historique/ferre/opmFerre.html.twig') %}
+			{% endif %}
+		{% endif %}
+		{% if ( dataCtu is defined ) %}
+			<div class="container pull-right">
+				<div class="row">
+					<h3> ~~~~ Données Post Paiement {{ nomLong }} {{ typeEnv }} ~~~~ </h3>
+				</div>
+			</div>
+			<br /><br /><br />
+			{% include('historique/ctu.html.twig') %}
+		{% endif %}
+	{% endif %}
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('/JS/tableSorterFull.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/JS/bootstrapTableSorter.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() 
+		{ 
+			$("#myTable").DataTable(); 
+		} 
+	);
+</script>
+{% endblock %}

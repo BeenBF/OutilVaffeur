@@ -1,0 +1,16 @@
+ 
+	{% for data3 in dataCtu %}
+		<tr>
+			<td>CTU</td>
+			<td>{{ data3.code_tarif }}</td>
+			<td></td>
+			<td>{{ numPass }}</td>
+			<td></td>
+			<td>{{ data3.horodatage|date('Y-m-d H:i:s') }}</td>
+			<td>{{ data3.nature_transact }}</td>
+			<td>{{ data3.ref_transporteur }}</td>
+			<td>{{ data3.ref_ligne }}</td>
+			<td></td>
+			<td>{{ data3.sequence_ctu }}</td>
+		</tr>
+	{% endfor %}
